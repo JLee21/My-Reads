@@ -1,5 +1,5 @@
 {
-  "homepage": "https://jlee21.github.io/my-reads",
+  "homepage": "https://github.com/JLee21/my-reads",
   "dependencies": {
     "gh-pages": "^1.2.0",
     "prop-types": "^15.6.1",
