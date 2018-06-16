@@ -1,6 +1,8 @@
-import React from 'react'
+import React from 'react';
 import PropTypes from 'prop-types';
-import Book from './Book'
+import { CSSTransitionGroup, TransitionGroup } from 'react-transition-group';
+import {CSSTransition} from 'react-transition-group'
+import Book from './Book';
 
 // Will be a functional stateless Component.
 // Props will be each bookshelf given from the parent component.
@@ -13,6 +15,7 @@ const BookShelf = props => {
       <h2 className="bookshelf-title">{shelf}</h2>
       <div className="bookshelf-books">
         <ol className="books-grid">
+
           {books.map((book) => (
             <li key={book.id}>
               <Book
@@ -21,12 +24,13 @@ const BookShelf = props => {
               />
             </li>
           ))}
+
         </ol>
       </div>
     </div>
   )
-
 }
+
 BookShelf.propTypes = {
   shelf: PropTypes.string.isRequired,
   books: PropTypes.array.isRequired,

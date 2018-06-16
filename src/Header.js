@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 
-const Header = props => (
+const Header = () => (
   <div>
     <div className="list-books-title">
       <h1>MyReads</h1>
@@ -13,5 +13,3 @@ const Header = props => (
 )
 
 export default Header
-
-        // <a>Add a book</a>

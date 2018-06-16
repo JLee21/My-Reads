@@ -18,10 +18,9 @@ body, .app {
   display: flex;
 }
 .list-books-title h1 {
-
-  font-weight: 300;
-  font-size: 4em;
-  letter-spacing: 9px;
+  font-weight: lighter;
+  font-size: 3em;
+  letter-spacing: 15px;
   margin: auto;
   color: #F7FAFE;
 }
@@ -32,18 +31,19 @@ body, .app {
 }
 
 .bookshelf {
-  /* padding: 0 10px 20px; */
+  padding: 0;
 }
 
 @media (min-width: 600px) {
   .bookshelf {
-    /* padding: 0 20px 40px; */
+    padding: 0 20px 40px;
   }
 }
 
 .bookshelf-title {
+  margin: 10px;
   color: #355692;
-  font-size: 2em;
+  font-size: 2.5em;
   font-weight: lighter;
   letter-spacing: 3px;
   text-align: center;
@@ -54,8 +54,8 @@ body, .app {
 
 .open-search {
   position: absolute;
-  /* right: 25px;
-  bottom: 25px; */
+  left: 5px;
+  top: 3px;
 }
 .open-search a {
   display: inline;
@@ -131,6 +131,15 @@ body, .app {
   text-align: left;
 }
 
+.fade-enter {
+  opacity: 0;
+  z-index: 1;
+}
+.fade-enter.face-enter-active {
+  opacity: 1;
+  transition: opacity 250ms ease-in;
+}
+
 .book {
   width: 195px;
 }
@@ -189,4 +198,13 @@ body, .app {
   padding: 20px 10px 0;
   text-align: center;
   font-size: 1em;
+}
+
+/* dropdown select shelf */
+select {
+  background-color: black;
+}
+option {
+  color: white;
+  min-height: 2em;
 }

@@ -10,18 +10,24 @@ import ReactResponsiveSelect from 'react-responsive-select';
 // Only a single book object will be passed.
 
 class Book extends Component {
-  static propTypes = {
-    book: PropTypes.object.isRequired,
-    handleShelfChange: PropTypes.func.isRequired,
-  }
   state = {
     selectedOption: ''
+  }
+  truncateTitle = title => {
+    const maxLength = 30
+    let toReturn = ''
+    title.length < maxLength ? (
+      toReturn  = title
+    ) : (
+      toReturn = `${title.slice(0,maxLength)}...`
+    )
+    return toReturn
   }
   render() {
     const { book, handleShelfChange } = this.props
     const { selectedOption } = this.state;
     const id = book.id
-    const title = book.title
+    const title = this.truncateTitle(book.title)
     const coverImageLink = book.imageLinks.thumbnail
     const authors = book.authors
 
@@ -47,14 +53,22 @@ class Book extends Component {
         </div>
         <div className="book-title">{title}</div>
         <div className="book-authors">
-            {authors.map((author, index) => (
+          {authors ? (
+            authors.map((author, index) => (
               <div>{author}</div>
-            ))}
+            ))
+          ) : (
+            <p>Author Unknown</p>
+          )}
         </div>
       </div>
     )
   }
 }
 
+Book.propTypes = {
+  book: PropTypes.object.isRequired,
+  handleShelfChange: PropTypes.func.isRequired,
+}
 
 export default Book

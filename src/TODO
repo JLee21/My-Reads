@@ -1,38 +1,52 @@
-* I need to not filter/loop through books in this render(). the books may not be available at that time.
-  There's too much junk in the render part of Route.
-
-  All three render methods will be passed the same three route props.
-
-  match
-  location
-  history
-
-
-* How will my state pass to each component if the components are within <Route />
-    <Router>
-      <Switch>
-        <Route exact path='/' component={App}/>
-        <Route path='/search' component={Search} />
-      </Switch>
-    </Router>
 
 * Make Search PureComponent, right now, it updates anytime state books changes.
-* List books on main page.
-* Mark disabled select option.
 * Make BookShelf a PureComponent. Only change if its props have changed.
-* Do not duplicate SHELVES in Book with the select thing.
-
-* Make a list of authors as there are bunched together.
-* Remove book from Search page as soon a shelf is selected.
+* Mark disabled select option.
 
 L E S S O N S
 * Note that parenthesis and brackets in arrow functions.
   Use parenthesis when creating JSX. Otherwise, you'd need to use brackets AND a return.
 * You can only destructure props while in render method (this applies if you're in a class component)
-* When destructuring, all variable names have to match.
+* When destructuring, all variable names have to match. Called `named imports`
+---
+* I need to not filter/loop through books in this render(). the books may not be available at that time.
+  There's too much junk in the render part of Route.
+
+  All three render methods will be passed the same three route props.
+
+  * match
+  * location
+  * history
+
+
+  --> Rearrange the code so that it's more declarative. Ie, if there are no books to be passed as props, then the render func won't fire.
+
+---
+* How will my state pass to each component if the components are within <Route />
+
+      <Router>
+        <Switch>
+          <Route exact path='/' component={App}/>
+          <Route path='/search' component={Search} />
+        </Switch>
+      </Router>
+
+    --> Use
+
+      render={() => (<Comp stuff={propsStuff})}
+
+---
+
+  * When outside of render, this will work
+
+    const books = this.state.books;
+
+  but not this
+
+    const { books } = this.state.books;
+
+---
 
 Q U E S T I O N S
-* What if I want to pass props to a component that is inside a <Route />?
-  <Route path='/search' component={Search} />
 
 *

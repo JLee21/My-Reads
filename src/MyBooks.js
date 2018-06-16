@@ -1,20 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import * as BooksAPI from './utils/BooksAPI'
 import BookShelf from './BookShelf';
 import Header from './Header'
-
-// booksInShelfs = {}
-// for shelf in shelfs:
-//   booksInShelfs[shelf] = this.getBooksFromShelf(shelf)
-//for shelf, books in booksInShelfs.iteritems():
-//  <Book shelf={shelf} books={books}/>
-
-const SHELVES = [
-  {value: 'currentlyReading', text: 'Currently Reading'},
-  {value: 'wantToRead',       text: 'Want to Read'},
-  {value: 'read',             text: 'Finished Reading'},
-  {value: 'none',             text: 'None'}
-]
+import { SHELVES } from './data/Shelves'
 
 class MyBooks extends React.Component {
 
@@ -47,5 +36,10 @@ class MyBooks extends React.Component {
     )
   }
 }
+
+MyBooks.propTypes = {
+  books: PropTypes.array.isRequired,
+  handleShelfChange: PropTypes.func.isRequired,
+};
 
 export default MyBooks

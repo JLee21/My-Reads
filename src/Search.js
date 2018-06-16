@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import * as BooksAPI from './utils/BooksAPI'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types';
+import * as BooksAPI from './utils/BooksAPI'
 import Book from './Book'
 
 class Search extends Component {
@@ -23,9 +24,17 @@ class Search extends Component {
         this.setState({books})
       })
   )
+  hideSelectedBook = book => {
+    const books = this.state.books;
+    const showBooks = books.filter( _book => _book.id !== book.id)
+    this.setState({books: showBooks})
+  }
+  handleShelfChangeWrapper = (book, event) => {
+    this.hideSelectedBook(book);
+    this.props.handleShelfChange(book, event);
+  }
   render() {
     const { query, books } = this.state
-    const { handleShelfChange } = this.props
 
     return (
       <div className="search-books">
@@ -34,11 +43,10 @@ class Search extends Component {
             className="close-search"
             to='/'>
           </Link>
-
           <div className="search-books-input-wrapper">
             <input
               type="text"
-              value={this.state.query}
+              value={query}
               onChange={this.onInputChange}
               placeholder="Search by title or author"
               onChange={(event) => this.onInputChange(event.target.value)}
@@ -49,11 +57,11 @@ class Search extends Component {
         <div className="search-books-results">
           <ol className="books-grid">
             {query.length > 0 && books.length > 0 && (
-              books.map((book, index) => (
-                <li key={index}>
+              books.map((book) => (
+                <li key={book.id}>
                   <Book
                     book={book}
-                    handleShelfChange={handleShelfChange}
+                    handleShelfChange={this.handleShelfChangeWrapper}
                   />
                 </li>
               ))
@@ -64,5 +72,9 @@ class Search extends Component {
     )
   }
 }
+
+Search.propTypes = {
+  handleShelfChange: PropTypes.func.isRequired,
+};
 
 export default Search
