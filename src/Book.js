@@ -34,36 +34,63 @@ class Book extends Component {
     return (
       <div className="book">
         <div className="book-top">
-          <div className="book-cover"
-            style={
-              { width: 128,
-                height: 193,
-                backgroundImage: `url(${coverImageLink})` }
-            }>
-          </div>
-          <div className="book-shelf-changer">
-            <select onChange={(event) => (handleShelfChange(book, event))}>
-              <option value="move" selected disabled>Move to...</option>
-              <option value="currentlyReading">Currently Reading</option>
-              <option value="wantToRead">Want to Read</option>
-              <option value="read">Finished Reading</option>
-              <option value="none">None</option>
-            </select>
-          </div>
+          <BookCover book={book} coverImageLink={coverImageLink} />
+          <ShelfSelector handleShelfChange={handleShelfChange} />
         </div>
-        <div className="book-title">{title}</div>
-        <div className="book-authors">
-          {authors ? (
-            authors.map((author, index) => (
-              <div>{author}</div>
-            ))
-          ) : (
-            <p>Author Unknown</p>
-          )}
-        </div>
+        <BookTitle title={title} />
+        <Authors authors={book.authors} />
       </div>
     )
   }
+}
+
+const ShelfSelector = props => {
+  const { book, handleShelfChange } = props
+  return (
+    <div className="book-shelf-changer">
+      <select onChange={(event) => (handleShelfChange(book, event))}>
+        <option value="move" selected disabled>Move to...</option>
+        <option value="currentlyReading">Currently Reading</option>
+        <option value="wantToRead">Want to Read</option>
+        <option value="read">Finished Reading</option>
+        <option value="none">None</option>
+      </select>
+    </div>
+  )
+}
+const BookCover = props => {
+  const { coverImageLink } = props
+  return (
+    <div className="book-cover"
+      style={
+        { width: 128,
+          height: 193,
+          backgroundImage: `url(${coverImageLink})` }
+      }>
+    </div>
+  )
+}
+const BookTitle = props => {
+  const { title } = props
+  return (
+    <div className="book-title">
+      {title}
+    </div>
+  )
+}
+const Authors = props => {
+  const { authors } = props
+  return (
+    <div className="book-authors">
+      {authors ? (
+        authors.map((author, index) => (
+          <div>{author}</div>
+        ))
+      ) : (
+        <p>Author Unknown</p>
+      )}
+    </div>
+  )
 }
 
 Book.propTypes = {

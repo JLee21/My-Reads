@@ -10,6 +10,9 @@ class MyBooks extends React.Component {
   getBooksByShelf = (shelf, books) => {
     return books.filter(book => (book.shelf === shelf))
   }
+  getShowableShelves = shelves => {
+    return SHELVES.slice(0, SHELVES.length-1)
+  }
   render() {
     const { handleShelfChange, books } = this.props
 
@@ -17,8 +20,7 @@ class MyBooks extends React.Component {
       <div className="app">
         <div className="list-books">
           <Header />
-          {SHELVES.slice(0, SHELVES.length-1).map((shelf) => {
-              // this line is called before books are fetched from server.
+          {this.getShowableShelves().map((shelf) => {
               const booksByShelf = this.getBooksByShelf(shelf.value, books)
               return (
                 <BookShelf
