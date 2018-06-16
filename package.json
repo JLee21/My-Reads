@@ -1,5 +1,5 @@
 {
-  "homepage": "https://jlee21.github.io/reactnd-project-myreads-starter/",
+  "homepage": "https://jlee21.github.io/my-reads/build",
   "dependencies": {
     "gh-pages": "^1.2.0",
     "prop-types": "^15.6.1",
