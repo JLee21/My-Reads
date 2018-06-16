@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types';
-import * as BooksAPI from './utils/BooksAPI'
 import BookShelf from './BookShelf';
 import Header from './Header'
 import { SHELVES } from './data/Shelves'

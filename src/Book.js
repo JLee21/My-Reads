@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import ReactResponsiveSelect from 'react-responsive-select';
-
 
 // Will be a functional stateless Component.
 // Props will contain object data about the book and also a handler for selecting
@@ -10,9 +8,6 @@ import ReactResponsiveSelect from 'react-responsive-select';
 // Only a single book object will be passed.
 
 class Book extends Component {
-  state = {
-    selectedOption: ''
-  }
   truncateTitle = title => {
     const maxLength = 30
     let toReturn = ''
@@ -31,8 +26,6 @@ class Book extends Component {
   }
   render() {
     const { book, handleShelfChange } = this.props
-    const { selectedOption } = this.state;
-    const id = book.id
     const title = this.truncateTitle(book.title)
     const coverImageLink = this.maybeGetCoverImageLink(book.imageLinks)
     const authors = book.authors
@@ -44,7 +37,7 @@ class Book extends Component {
           <ShelfSelector handleShelfChange={handleShelfChange} />
         </div>
         <BookTitle title={title} />
-        <Authors authors={book.authors} />
+        <Authors authors={authors} />
       </div>
     )
   }

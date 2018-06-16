@@ -35,10 +35,6 @@ class Search extends Component {
     this.hideSelectedBook(book);
     this.props.handleShelfChange(book, event);
   }
-  toShow = () => {
-    return true
-    return (this.books && this.books.length)
-  }
   render() {
     const { query, books } = this.state
 
@@ -53,7 +49,6 @@ class Search extends Component {
             <input
               type="text"
               value={query}
-              onChange={this.onInputChange}
               placeholder="Search by title or author"
               onChange={(event) => this.onInputChange(event.target.value)}
               autoFocus
