@@ -10,28 +10,34 @@ class Search extends Component {
     books: []
   }
   onInputChange = query => {
-    this.updateQuery(query);
-    this.searchBooks(query);
+    this.updateQuery(query)
+    query !== '' && (
+      this.searchBooks(query)
+    )
   }
   updateQuery = (query) => {
     this.setState(() => ({
-      query: query.trim()
+      query: query
     }))
   }
-  searchBooks = query => (
+  searchBooks = query => {
     BooksAPI.search(query)
       .then(books => {
-        this.setState({books})
+        !books.error ? this.setState({books}) : this.setState({})
       })
-  )
-  hideSelectedBook = book => {
+  }
+  hideSelectedBook = selbook => {
     const books = this.state.books;
-    const showBooks = books.filter( _book => _book.id !== book.id)
+    const showBooks = books.filter(book => book.id !== selbook.id)
     this.setState({books: showBooks})
   }
   handleShelfChangeWrapper = (book, event) => {
     this.hideSelectedBook(book);
     this.props.handleShelfChange(book, event);
+  }
+  toShow = () => {
+    return true
+    return (this.books && this.books.length)
   }
   render() {
     const { query, books } = this.state
@@ -56,16 +62,14 @@ class Search extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {query.length > 0 && books.length > 0 && (
-              books.map((book) => (
-                <li key={book.id}>
-                  <Book
-                    book={book}
-                    handleShelfChange={this.handleShelfChangeWrapper}
-                  />
-                </li>
-              ))
-            )}
+            {books.map((book) => (
+              <li key={book.id}>
+                <Book
+                  book={book}
+                  handleShelfChange={this.handleShelfChangeWrapper}
+                />
+              </li>
+            ))}
           </ol>
         </div>
       </div>

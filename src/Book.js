@@ -23,12 +23,18 @@ class Book extends Component {
     )
     return toReturn
   }
+  maybeGetCoverImageLink = imageLinks => {
+    for (let link in imageLinks) {
+      if(imageLinks[link]) return imageLinks[link]
+    }
+    return ''
+  }
   render() {
     const { book, handleShelfChange } = this.props
     const { selectedOption } = this.state;
     const id = book.id
     const title = this.truncateTitle(book.title)
-    const coverImageLink = book.imageLinks.thumbnail
+    const coverImageLink = this.maybeGetCoverImageLink(book.imageLinks)
     const authors = book.authors
 
     return (
@@ -83,8 +89,8 @@ const Authors = props => {
   return (
     <div className="book-authors">
       {authors ? (
-        authors.map((author, index) => (
-          <div>{author}</div>
+        authors.map((author) => (
+          <div key={author}>{author}</div>
         ))
       ) : (
         <p>Author Unknown</p>
@@ -97,5 +103,7 @@ Book.propTypes = {
   book: PropTypes.object.isRequired,
   handleShelfChange: PropTypes.func.isRequired,
 }
+
+// const coverImageLink = book.imageLinks.thumbnail
 
 export default Book
