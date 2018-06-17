@@ -1,3 +1,13 @@
+// create a bucket
+aws s3 mb s3://<your-bucket-name>
+// list buckets
+aws s3 ls
+// build and deploy the app
+npm run build
+aws s3 sync build/ s3://<your-bucket-name> --acl public-read
+aws s3 website --index-document index.html --error-document error.html s3://<your-bucket-name>
+
+
 # MyReads Project
 
 This is the starter template for the final assessment project for Udacity's React Fundamentals course. The goal of this template is to save you time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. If you choose to start with this template, your job will be to add interactivity to the app by refactoring the static code in this template.

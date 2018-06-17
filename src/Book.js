@@ -34,7 +34,7 @@ class Book extends Component {
       <div className="book">
         <div className="book-top">
           <BookCover book={book} coverImageLink={coverImageLink} />
-          <ShelfSelector handleShelfChange={handleShelfChange} />
+          <ShelfSelector book={book} handleShelfChange={handleShelfChange} />
         </div>
         <BookTitle title={title} />
         <Authors authors={authors} />
