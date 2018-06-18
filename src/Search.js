@@ -11,8 +11,10 @@ class Search extends Component {
   }
   onInputChange = query => {
     this.updateQuery(query)
-    query !== '' && (
+    query !== '' ? (
       this.searchBooks(query)
+    ) : (
+      this.clearBooks()
     )
   }
   updateQuery = (query) => {
@@ -20,10 +22,13 @@ class Search extends Component {
       query: query
     }))
   }
+  clearBooks = () => (
+    this.setState({books: {}})
+  )
   searchBooks = query => {
     BooksAPI.search(query)
       .then(books => {
-        !books.error ? this.setState({books}) : this.setState({})
+        !books.error ? this.setState({books}) : this.clearBooks()
       })
   }
   hideSelectedBook = selbook => {
@@ -57,14 +62,15 @@ class Search extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {books.map((book) => (
+            {books.length > 0 && (
+              books.map((book) => (
               <li key={book.id}>
                 <Book
                   book={book}
                   handleShelfChange={this.handleShelfChangeWrapper}
                 />
               </li>
-            ))}
+            )))}
           </ol>
         </div>
       </div>
