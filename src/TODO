@@ -1,7 +1,10 @@
 
-* Make Search PureComponent, right now, it updates anytime state books changes.
 * Make BookShelf a PureComponent. Only change if its props have changed.
-* Mark disabled select option.
+* Any time a book shows (search or main page) have it's shelf already selected, if a shelf does indeed exists.
+  If a book does not belong to a shelf, autoselect None
+
+* Create an "express" array of books with their shelf. eg [ <bookid> : 'shelf' ]
+  and pass this array to the search page.
 
 L E S S O N S
 * Note that parenthesis and brackets in arrow functions.

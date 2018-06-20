@@ -10,31 +10,25 @@ import * as BooksAPI from './utils/BooksAPI'
 import Search from './Search'
 import MyBooks from './MyBooks'
 
-// booksInShelfs = {}
-// for shelf in shelfs:
-//   booksInShelfs[shelf] = this.getBooksFromShelf(shelf)
-//for shelf, books in booksInShelfs.iteritems():
-//  <Book shelf={shelf} books={books}/>
 
 class BooksApp extends React.Component {
   state = {
     books: []
   }
-  componentDidMount() {
-    console.log('componentDidMount');
+  getBooks = () => (
     BooksAPI.getAll()
       .then((books) => {
         this.setState({books})
       })
+  )
+  componentDidMount() {
+    this.getBooks()
   }
   handleShelfChange = (book, event) => {
     const shelf = event.target.value
     BooksAPI.update(book, shelf)
       .then((res) => {
-        BooksAPI.getAll()
-          .then((books) => {
-            this.setState({books})
-          })
+        this.getBooks()
       })
   }
   render() {
@@ -51,6 +45,7 @@ class BooksApp extends React.Component {
           )} />
           <Route path='/search' render={() => (
             <Search
+              mybooks={books}
               handleShelfChange={this.handleShelfChange}
             />
           )} />

@@ -25,10 +25,28 @@ class Search extends Component {
   clearBooks = () => (
     this.setState({books: {}})
   )
+  maybeAssignShelfToBooks = books => {
+    const mybooks = this.props.mybooks;
+    const searchbooks = books;
+    for (let searchbook of searchbooks) {
+      for (let mybook of mybooks) {
+        if (mybook.id === searchbook.id) {
+          searchbook.shelf = mybook.shelf
+          this.setState((currState) => ({
+            books:  [...currState, searchbook]
+          }))
+        }
+      }
+    }
+    // All other books that user doesn't have on shelf.
+    this.setState({books})
+  }
   searchBooks = query => {
     BooksAPI.search(query)
       .then(books => {
-        !books.error ? this.setState({books}) : this.clearBooks()
+        ! books.error
+        ? this.maybeAssignShelfToBooks(books)
+        : this.clearBooks()
       })
   }
   hideSelectedBook = selbook => {
