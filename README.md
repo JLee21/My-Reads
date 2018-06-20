@@ -10,7 +10,7 @@ npm run start
 ### About the Project
 
 This project aims to develop a way to "Think in React".
-A user is able to search for a book within a dynamic search bar and the state of the book is carried throughout the web app. The user can select a book and place it on a virtual bookshelf.
+A user is able to search for a book within a dynamic search bar and the user can select a book and place it on a virtual bookshelf.
 
 Some of the key principles applied follow:
 

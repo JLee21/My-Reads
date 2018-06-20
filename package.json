@@ -14,7 +14,7 @@
     "react-scripts": "1.1.4"
   },
   "scripts": {
-    "deploy": "aws s3 sync build/ s3://lee.my-reads --acl public-read",
+    "deploy": "npm run build && aws s3 sync build/ s3://lee.my-reads --acl public-read",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
