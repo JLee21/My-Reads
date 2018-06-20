@@ -44,15 +44,20 @@ class Book extends Component {
 }
 
 const ShelfSelector = props => {
+  // The option "None" should be selected if a book has not been assigned to a shelf.
+
   const { book, handleShelfChange } = props
+
   return (
     <div className="book-shelf-changer">
-      <select onChange={(event) => (handleShelfChange(book, event))}>
-        <option value="move" selected disabled>Move to...</option>
+      <select
+        value={book.shelf}
+        onChange={(event) => (handleShelfChange(book, event))}>
+        <option value="move" disabled>Move to...</option>
         <option value="currentlyReading">Currently Reading</option>
         <option value="wantToRead">Want to Read</option>
         <option value="read">Finished Reading</option>
-        <option value="none">None</option>
+        <option value="none" selected={!book.shelf}>None</option>
       </select>
     </div>
   )
