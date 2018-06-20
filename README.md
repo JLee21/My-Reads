@@ -18,6 +18,6 @@ Some of the key principles applied follow:
 * Using state components in order to keep track of which shelf a book is on
 * Using ReactRouter to allow a user to navigate the web app
 
-![shelf example]()
+![shelf example](https://github.com/JLee21/react-my-reads/blob/master/img/example-search.png)
 
-![search example]()
+![search example](https://github.com/JLee21/react-my-reads/blob/master/img/example-shelf.png)
