@@ -7,7 +7,7 @@ import Book from './Book';
 // Each bookshelf will have a collection of books.
 
 const BookShelf = props => {
-  const { shelf, books, handleShelfChange} = props
+  const { shelf, books, handleShelfChange} = props;
   return (
     <div className="bookshelf">
       <h2 className="bookshelf-title">{shelf}</h2>

@@ -9,26 +9,26 @@ import PropTypes from 'prop-types'
 
 class Book extends Component {
   truncateTitle = title => {
-    const maxLength = 30
-    let toReturn = ''
+    const maxLength = 30;
+    let toReturn = '';
     title.length < maxLength ? (
       toReturn  = title
     ) : (
       toReturn = `${title.slice(0,maxLength)}...`
     )
-    return toReturn
+    return toReturn;
   }
   maybeGetCoverImageLink = imageLinks => {
     for (let link in imageLinks) {
-      if(imageLinks[link]) return imageLinks[link]
+      if(imageLinks[link]) return imageLinks[link];
     }
     return ''
   }
   render() {
-    const { book, handleShelfChange } = this.props
-    const title = this.truncateTitle(book.title)
-    const coverImageLink = this.maybeGetCoverImageLink(book.imageLinks)
-    const authors = book.authors
+    const { book, handleShelfChange } = this.props;
+    const title = this.truncateTitle(book.title);
+    const coverImageLink = this.maybeGetCoverImageLink(book.imageLinks);
+    const authors = book.authors;
 
     return (
       <div className="book">
@@ -46,7 +46,7 @@ class Book extends Component {
 const ShelfSelector = props => {
   // The option "None" should be selected if a book has not been assigned to a shelf.
 
-  const { book, handleShelfChange } = props
+  const { book, handleShelfChange } = props;
 
   return (
     <div className="book-shelf-changer">
@@ -63,7 +63,7 @@ const ShelfSelector = props => {
   )
 }
 const BookCover = props => {
-  const { coverImageLink } = props
+  const { coverImageLink } = props;
   return (
     <div className="book-cover"
       style={
@@ -75,7 +75,7 @@ const BookCover = props => {
   )
 }
 const BookTitle = props => {
-  const { title } = props
+  const { title } = props;
   return (
     <div className="book-title">
       {title}
@@ -83,7 +83,7 @@ const BookTitle = props => {
   )
 }
 const Authors = props => {
-  const { authors } = props
+  const { authors } = props;
   return (
     <div className="book-authors">
       {authors ? (

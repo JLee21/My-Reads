@@ -31,7 +31,7 @@ class Search extends Component {
     for (let searchbook of searchbooks) {
       for (let mybook of mybooks) {
         if (mybook.id === searchbook.id) {
-          searchbook.shelf = mybook.shelf
+          searchbook.shelf = mybook.shelf;
           this.setState((currState) => ({
             books:  [...currState, searchbook]
           }))
@@ -39,7 +39,7 @@ class Search extends Component {
       }
     }
     // All other books that user doesn't have on shelf.
-    this.setState({books})
+    this.setState({books});
   }
   searchBooks = query => {
     BooksAPI.search(query)
@@ -51,15 +51,15 @@ class Search extends Component {
   }
   hideSelectedBook = selbook => {
     const books = this.state.books;
-    const showBooks = books.filter(book => book.id !== selbook.id)
-    this.setState({books: showBooks})
+    const showBooks = books.filter(book => book.id !== selbook.id);
+    this.setState({books: showBooks});
   }
   handleShelfChangeWrapper = (book, event) => {
     this.hideSelectedBook(book);
     this.props.handleShelfChange(book, event);
   }
   render() {
-    const { query, books } = this.state
+    const { query, books } = this.state;
 
     return (
       <div className="search-books">

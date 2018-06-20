@@ -7,10 +7,10 @@ import { SHELVES } from './data/Shelves'
 class MyBooks extends React.Component {
 
   getBooksByShelf = (shelf, books) => {
-    return books.filter(book => (book.shelf === shelf))
+    return books.filter(book => (book.shelf === shelf));
   }
   getShowableShelves = shelves => {
-    return SHELVES.slice(0, SHELVES.length-1)
+    return SHELVES.slice(0, SHELVES.length-1);
   }
   render() {
     const { handleShelfChange, books } = this.props
